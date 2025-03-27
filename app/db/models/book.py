@@ -12,7 +12,7 @@ class Book(Base):
     __tablename__ = "books"
     # model attrs
     id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
-    title: Mapped[str] = mapped_column(String(30), nullable=False)
+    title: Mapped[str] = mapped_column(String(30), nullable=False, unique=True)
     author: Mapped[str] = mapped_column(String(30), nullable=False)
     description: Mapped[str] = mapped_column(String, nullable=True)
     # relationships
