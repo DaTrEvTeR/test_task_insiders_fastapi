@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from app.db.config import engine  # noqa
-from app.db.base_model import Base  # noqa
+from app.db import models  # noqa
 
 app = FastAPI(title="Library API")
 
