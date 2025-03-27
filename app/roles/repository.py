@@ -17,7 +17,7 @@ class RolesRepository:
         if model.role_id:
             statement = statement.filter_by(id=model.role_id)
         if model.name:
-            statement = statement.filter_by(name=model.role_name.lower())
+            statement = statement.filter_by(name=model.name.lower())
         result = await db.execute(statement)
         return result.unique().scalar_one_or_none()
 

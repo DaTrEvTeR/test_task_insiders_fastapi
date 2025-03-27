@@ -1,4 +1,5 @@
 from typing import TYPE_CHECKING
+from sqlalchemy import or_
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 from app.config.roles import RolesEnum
@@ -48,6 +49,14 @@ class UsersRepository:
         users = result.unique().scalars().all()
         return list(users)
 
+    async def read_users_with_filters(self, model: UserSearch, db: AsyncSession) -> list[User]:
+        statement = select(User).where(
+            or_(User.id == model.user_id, User.username == model.username, User.email == model.email)
+        )
+        result = await db.execute(statement)
+        users = result.unique().scalars().all()
+        return list(users)
+
     async def update_user(self, user: User, new_data: UserUpdate, db: AsyncSession) -> User:
         if new_data.email:
             user.email = new_data.email.lower()
@@ -70,4 +79,4 @@ class UsersRepository:
         await db.commit()
 
 
-Users_repository: UsersRepository = UsersRepository()
+users_repository: UsersRepository = UsersRepository()

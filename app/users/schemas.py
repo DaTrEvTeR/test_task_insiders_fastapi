@@ -10,11 +10,21 @@ class UserCreate(BaseModel):
 
 
 class UserSearch(BaseModel):
-    email: Optional[str]
-    username: Optional[str]
-    user_id: Optional[int]
+    email: Optional[str] = None
+    username: Optional[str] = None
+    user_id: Optional[int] = None
 
 
 class UserUpdate(BaseModel):
-    email: Optional[str]
-    password: Optional[str]
+    email: Optional[str] = None
+    password: Optional[str] = None
+
+
+class UserLogin(BaseModel):
+    username: str
+    password: str
+
+
+class TokenData(BaseModel):
+    access_token: str
+    token_type: str
