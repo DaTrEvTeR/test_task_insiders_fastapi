@@ -1,0 +1,36 @@
+[tool.poetry]
+name = "test-task-insiders-fastapi"
+version = "0.1.0"
+description = ""
+authors = ["DaTrEvTeR <rozhkovm176@gmail.com>"]
+readme = "README.md"
+
+
+[tool.poetry.dependencies]
+python = "^3.13"
+fastapi = "^0.115.12"
+uvicorn = "^0.34.0"
+sqlalchemy = "^2.0.39"
+asyncpg = "^0.30.0"
+alembic = "^1.15.1"
+pydantic = "^2.10.6"
+bcrypt = "^4.3.0"
+passlib = "^1.7.4"
+pyjwt = "^2.10.1"
+
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^4.2.0"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = [
+    # Unused import.
+    "F401",
+]
