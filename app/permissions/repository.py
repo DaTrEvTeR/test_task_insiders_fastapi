@@ -6,7 +6,7 @@ from app.permissions.schemas import PermissionCreate, PermissionRead
 
 class PermissionsRepository:
     async def create_permission(self, model: PermissionCreate, db: AsyncSession) -> Permission:
-        permission = Permission(name=model.name)
+        permission = Permission(name=model.name.lower())
         db.add(permission)
         await db.commit()
         await db.refresh(permission)

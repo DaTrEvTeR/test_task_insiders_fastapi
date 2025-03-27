@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 from app.db.models.user import User
-from app.db.get_db import get_db
+from app.dependencies.get_db import get_db
 from app.users.jwt import create_access_token
 from app.users.schemas import UserCreate, UserLogin, TokenData, UserSearch
 from app.users.repository import users_repository
@@ -19,7 +19,7 @@ async def register(user_data: UserCreate, db: AsyncSession = Depends(get_db)):
 
     new_user = await users_repository.create_user(user_data, db)
 
-    token = create_access_token(data={"sub": new_user.email})
+    token = create_access_token(new_user)
     return TokenData(access_token=token, token_type="bearer")
 
 
@@ -31,5 +31,5 @@ async def login(user_data: UserLogin, db: AsyncSession = Depends(get_db)):
     if not user or not user_data.password == user.password:
         raise HTTPException(status_code=400, detail="Invalid username or password")
 
-    token = create_access_token(data={"sub": user.email})
+    token = create_access_token(user)
     return TokenData(access_token=token, token_type="bearer")
