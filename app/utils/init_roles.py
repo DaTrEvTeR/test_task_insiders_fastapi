@@ -1,7 +1,7 @@
 from sqlalchemy.future import select
 from app.db.config import session_maker
 from app.db.models import Role, Permission
-from app.config.roles import RolesEnum, PermissionsEnum, roles_permission_map
+from app.config.roles_permissions_enums import RolesEnum, PermissionsEnum, roles_permission_map
 from app.roles.repository import roles_repository
 from app.permissions.repository import permissions_repository
 from app.roles.schemas import RoleCreate

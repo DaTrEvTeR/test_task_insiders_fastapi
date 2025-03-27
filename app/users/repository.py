@@ -2,7 +2,7 @@ from typing import TYPE_CHECKING
 from sqlalchemy import or_
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
-from app.config.roles import RolesEnum
+from app.config.roles_permissions_enums import RolesEnum
 from app.db.models import User
 from app.roles.schemas import RoleRead
 from app.users.schemas import UserCreate, UserUpdate, UserSearch

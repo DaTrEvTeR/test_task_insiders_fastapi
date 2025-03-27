@@ -28,3 +28,8 @@ class UserLogin(BaseModel):
 class TokenData(BaseModel):
     access_token: str
     token_type: str
+
+
+class TokenPayload(BaseModel):
+    user_id: int
+    permissions: list[str]

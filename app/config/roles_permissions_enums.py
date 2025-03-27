@@ -14,6 +14,8 @@ class PermissionsEnum(enum.StrEnum):
     DLT_OWN = "delete_own"
     UPDT_ANY = "update_any"
     DLT_ANY = "delete_any"
+    MANAGE_PERMISSIONS = "manage_permissions"
+    MANAGE_ROLES = "manage_roles"
 
 
 roles_permission_map = {
@@ -29,5 +31,6 @@ roles_permission_map = {
         PermissionsEnum.WRITE,
         PermissionsEnum.UPDT_ANY,
         PermissionsEnum.DLT_ANY,
+        PermissionsEnum.MANAGE_PERMISSIONS,
     ],
 }
